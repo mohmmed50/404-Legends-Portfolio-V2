@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+:root {
+  /* Surfaces */
+  --color-ink: #0a0a0c;
+  --color-ink-2: #101114;
+  --color-ink-3: #16181d;
+  --color-paper: #ffffff;
+  --color-paper-2: #f6f7f9;
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-line-soft: rgba(255, 255, 255, 0.05);
+
+  /* Brand blue — sampled from the 404 Legends mark gradient */
+  --color-brand-100: #e8eefd;
+  --color-brand-200: #c3d4fa;
+  --color-brand-300: #7fa6f5;
+  --color-brand-400: #3d78ee;
+  --color-brand-500: #1554d9;
+  --color-brand-600: #103fb0;
+  --color-brand-700: #0b2f8f;
+  --color-brand-800: #082368;
+  --color-brand-900: #071c57;
+
+  /* Steel — the "404" numeral neutral */
+  --color-steel-100: #f1f2f4;
+  --color-steel-200: #d9dade;
+  --color-steel-400: #9aa0aa;
+  --color-steel-600: #5a5f68;
+
+  --color-ink-fg: #f2f3f5;
+  --color-ink-fg-muted: #9aa0ac;
+  --color-paper-fg: #101114;
+  --color-paper-fg-muted: #5a5f68;
+
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --container-max: 1280px;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-ink-3: var(--color-ink-3);
+  --color-paper: var(--color-paper);
+  --color-paper-2: var(--color-paper-2);
+  --color-line: var(--color-line);
+  --color-line-soft: var(--color-line-soft);
+
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-300: var(--color-brand-300);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-700: var(--color-brand-700);
+  --color-brand-800: var(--color-brand-800);
+  --color-brand-900: var(--color-brand-900);
+
+  --color-steel-100: var(--color-steel-100);
+  --color-steel-200: var(--color-steel-200);
+  --color-steel-400: var(--color-steel-400);
+  --color-steel-600: var(--color-steel-600);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-ink-fg);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-brand-500);
+  color: white;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-400);
+  outline-offset: 3px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg, var(--color-brand-300) 0%, var(--color-brand-500) 55%, var(--color-brand-700) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hex-grid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath fill='none' stroke='%231554D9' stroke-opacity='0.16' stroke-width='1' d='M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 33 L56 49 L56 81 L28 97 L0 81 L0 49 Z'/%3E%3C/svg%3E");
+  background-size: 56px 97px;
+}
+
+.hex-grid-pan {
+  animation: hex-pan 60s linear infinite;
+}
+
+@keyframes hex-pan {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 224px 388px;
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.line-draw {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.16;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.28;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
