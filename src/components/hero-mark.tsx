@@ -66,10 +66,12 @@ export function HeroMark() {
     >
       <Image
         ref={imgRef}
-        src="/brand/mark.png"
+        src="/brand/mark-1024.png"
         alt=""
-        width={480}
-        height={480}
+        width={832}
+        height={832}
+        sizes="416px"
+        quality={90}
         priority
         className="h-[26rem] w-[26rem] opacity-90 drop-shadow-[0_0_60px_rgba(21,84,217,0.35)]"
       />

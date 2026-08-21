@@ -77,10 +77,10 @@ export function Portfolio() {
             <figure className="overflow-hidden rounded-2xl border border-line bg-ink-3">
               <div className="relative flex aspect-4/3 items-center justify-center">
                 <Image
-                  src="/brand/mark.png"
+                  src="/brand/mark-1024.png"
                   alt="404 Legends icon mark on a dark tile"
-                  width={160}
-                  height={160}
+                  width={288}
+                  height={288}
                   className="h-32 w-32 transition-transform duration-500 hover:scale-105 sm:h-36 sm:w-36"
                 />
               </div>
@@ -98,10 +98,10 @@ export function Portfolio() {
             <figure className="overflow-hidden rounded-2xl border border-line bg-paper">
               <div className="relative flex aspect-4/3 items-center justify-center">
                 <Image
-                  src="/brand/mark.png"
+                  src="/brand/mark-1024.png"
                   alt="404 Legends icon mark on a light tile"
-                  width={160}
-                  height={160}
+                  width={288}
+                  height={288}
                   className="h-32 w-32 transition-transform duration-500 hover:scale-105 sm:h-36 sm:w-36"
                 />
               </div>
@@ -119,10 +119,10 @@ export function Portfolio() {
             <figure className="overflow-hidden rounded-2xl border border-line bg-ink-2">
               <div className="relative flex aspect-4/3 items-center justify-center overflow-hidden">
                 <Image
-                  src="/brand/mark.png"
+                  src="/brand/mark-1024.png"
                   alt="Close-up detail of the 404 Legends mark geometry"
-                  width={340}
-                  height={340}
+                  width={672}
+                  height={672}
                   className="h-56 w-56 scale-[2] opacity-95 transition-transform duration-700 hover:scale-[2.15]"
                 />
               </div>
