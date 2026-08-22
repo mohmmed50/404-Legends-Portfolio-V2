@@ -62,7 +62,7 @@ export function Hero() {
                 </Link>
               </MagneticButton>
               <Link
-                href="#portfolio"
+                href="#projects"
                 className="group inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-medium text-ink-fg hover:border-brand-400/60 hover:text-brand-200 transition-colors"
               >
                 Explore Our Work

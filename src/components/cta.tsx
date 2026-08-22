@@ -31,7 +31,7 @@ export function CTA() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <MagneticButton>
               <Link
-                href="mailto:hello@404legends.com"
+                href="mailto:info@404legend.space"
                 className="group inline-flex items-center gap-2 rounded-md bg-brand-500 hover:bg-brand-400 transition-colors px-6 py-3.5 text-sm font-medium text-white"
               >
                 Start a Project
@@ -43,7 +43,7 @@ export function CTA() {
             </MagneticButton>
           </div>
           <p className="mt-5 font-mono text-sm text-ink-fg-muted">
-            hello@404legends.com
+            info@404legend.space
           </p>
         </ScrollReveal>
       </div>
