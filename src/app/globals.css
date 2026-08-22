@@ -173,3 +173,23 @@ body {
     transform: translate(-50%, -50%) scale(1.08);
   }
 }
+
+.animate-glow-pulse {
+  animation: glow-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 45px rgba(61, 120, 238, 0.65))
+      drop-shadow(0 0 90px rgba(21, 84, 217, 0.5))
+      drop-shadow(0 0 140px rgba(21, 84, 217, 0.3));
+  }
+  50% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 75px rgba(93, 148, 255, 0.95))
+      drop-shadow(0 0 140px rgba(61, 120, 238, 0.8))
+      drop-shadow(0 0 220px rgba(21, 84, 217, 0.5));
+  }
+}
