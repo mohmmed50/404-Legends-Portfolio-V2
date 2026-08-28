@@ -10,6 +10,7 @@ const VIEW_WIDTH = 40;
 const X_LEFT = 8;
 const X_RIGHT = 30;
 const DOT_SIZE = 10;
+const SLIDE_DISTANCE = 40;
 
 export function SectionConnector({ children }: { children: ReactNode }) {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -34,6 +35,10 @@ export function SectionConnector({ children }: { children: ReactNode }) {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    // The connector line and its scroll-linked motion are a large-screen accent
+    // only — it is visually hidden below lg and adds nothing on touch layouts.
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    const animate = !prefersReducedMotion && isDesktop;
 
     let scaleX = 1;
     let st: ScrollTrigger | undefined;
@@ -70,15 +75,11 @@ export function SectionConnector({ children }: { children: ReactNode }) {
       const length = path.getTotalLength();
       gsap.set(path, {
         strokeDasharray: length,
-        strokeDashoffset: prefersReducedMotion ? 0 : length,
+        strokeDashoffset: animate ? length : 0,
       });
 
-      if (prefersReducedMotion) {
-        const end = path.getPointAtLength(length);
-        dot.style.opacity = "1";
-        dot.style.transform = `translate(${end.x * scaleX - DOT_SIZE / 2}px, ${
-          end.y - DOT_SIZE / 2
-        }px)`;
+      if (!animate) {
+        dot.style.opacity = "0";
       }
     };
 
@@ -92,7 +93,7 @@ export function SectionConnector({ children }: { children: ReactNode }) {
 
     let ctx: gsap.Context | undefined;
 
-    if (!prefersReducedMotion) {
+    if (animate) {
       st = ScrollTrigger.create({
         trigger: wrap,
         start: "top 65%",
@@ -113,14 +114,14 @@ export function SectionConnector({ children }: { children: ReactNode }) {
       ctx = gsap.context(() => {
         const sections = Array.from(content.children) as HTMLElement[];
         sections.forEach((section, i) => {
-          const fromX = i % 2 === 0 ? -70 : 70;
+          const fromX = i % 2 === 0 ? -SLIDE_DISTANCE : SLIDE_DISTANCE;
           gsap.fromTo(
             section,
             { x: fromX, opacity: 0 },
             {
               x: 0,
               opacity: 1,
-              duration: 1,
+              duration: 0.9,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: section,
