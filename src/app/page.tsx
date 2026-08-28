@@ -22,7 +22,6 @@ const jsonLd = {
       email: SITE.email,
       description: SITE.description,
       logo: `${SITE.url}/brand/mark-512.png`,
-      sameAs: [SITE.github],
       knowsAbout: [
         "Software Engineering",
         "Web Application Development",

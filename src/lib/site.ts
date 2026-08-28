@@ -6,7 +6,6 @@ export const SITE = {
   tagline: "Where 404 Becomes Legend.",
   description:
     "404 Legends is a software engineering studio. We turn complex problems into reliable software systems — custom software, web and mobile applications, enterprise systems, automation, and AI-powered solutions.",
-  github: "https://github.com/ebrahimmehasen",
 } as const;
 
 export const NAV_LINKS = [
