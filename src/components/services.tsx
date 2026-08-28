@@ -15,7 +15,7 @@ const SERVICES = [
     icon: Code2,
     title: "Software Engineering",
     description:
-      "Custom software systems built around real business requirements.",
+      "Custom systems built around real business requirements — not templates.",
   },
   {
     icon: Globe,
@@ -25,25 +25,24 @@ const SERVICES = [
   {
     icon: Smartphone,
     title: "Mobile Applications",
-    description: "Cross-platform and native mobile experiences.",
+    description: "Cross-platform and native apps that ship to real users.",
   },
   {
     icon: Network,
     title: "System Architecture",
     description:
-      "APIs, databases, integrations, infrastructure, and scalable architecture.",
+      "APIs, databases, integrations, and infrastructure designed to scale.",
   },
   {
     icon: Workflow,
     title: "Automation",
-    description:
-      "Turn repetitive workflows into reliable automated systems.",
+    description: "Repetitive workflows turned into reliable automated systems.",
   },
   {
     icon: Sparkles,
     title: "AI & Intelligent Systems",
     description:
-      "AI-powered applications, computer vision, automation, and intelligent workflows.",
+      "AI-powered applications, computer vision, and intelligent workflows.",
   },
   {
     icon: Plug,
@@ -64,13 +63,26 @@ export function Services() {
           <h2 className="mt-4 font-display font-semibold text-3xl sm:text-4xl leading-tight tracking-tight text-ink-fg">
             What we build
           </h2>
+          <p className="mt-5 text-base leading-relaxed text-ink-fg-muted">
+            One team across the full stack — from the architecture decisions
+            down to the last deployment.
+          </p>
         </ScrollReveal>
 
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map(({ icon: Icon, title, description }, i) => (
             <ScrollReveal key={title} delay={(i % 3) * 0.06}>
-              <TiltCard className="h-full bg-ink-2 p-7 transition-colors hover:bg-ink-3">
-                <Icon size={22} className="text-brand-400" strokeWidth={1.75} />
+              <TiltCard className="flex h-full flex-col bg-ink-2 p-7 transition-colors hover:bg-ink-3">
+                <div className="flex items-center justify-between">
+                  <Icon
+                    size={22}
+                    className="text-brand-400"
+                    strokeWidth={1.75}
+                  />
+                  <span className="font-mono text-xs text-steel-600">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
                 <h3 className="mt-5 font-display font-semibold text-base text-ink-fg">
                   {title}
                 </h3>
@@ -80,6 +92,9 @@ export function Services() {
               </TiltCard>
             </ScrollReveal>
           ))}
+          <div aria-hidden className="hidden bg-ink-2 sm:block lg:hidden" />
+          <div aria-hidden className="hidden bg-ink-2 lg:block" />
+          <div aria-hidden className="hidden bg-ink-2 lg:block" />
         </div>
       </div>
     </section>
