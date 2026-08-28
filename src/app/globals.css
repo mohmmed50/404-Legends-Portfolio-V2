@@ -123,36 +123,6 @@ body {
   background-size: 56px 97px;
 }
 
-.hex-grid-pan {
-  animation: hex-pan 60s linear infinite;
-}
-
-@keyframes hex-pan {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 224px 388px;
-  }
-}
-
-.marquee-track {
-  animation: marquee-scroll 32s linear infinite;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 .line-draw {
   transform: scaleX(0);
   transform-origin: left;

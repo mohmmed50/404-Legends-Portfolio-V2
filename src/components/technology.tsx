@@ -1,37 +1,23 @@
 import { ScrollReveal } from "@/components/scroll-reveal";
 
-const STACK = [
-  "Python",
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Flutter",
-  "Node.js",
-  ".NET",
-  "Laravel",
-  "PostgreSQL",
-  "SQL Server",
-  "Firebase",
-  "Supabase",
-  "Cloud Platforms",
-  "AI / ML",
+const STACK_GROUPS = [
+  {
+    label: "Languages",
+    items: ["Python", "JavaScript", "TypeScript"],
+  },
+  {
+    label: "Frameworks & Runtime",
+    items: ["React", "Next.js", "Flutter", "Node.js", ".NET", "Laravel"],
+  },
+  {
+    label: "Data",
+    items: ["PostgreSQL", "SQL Server", "Firebase", "Supabase"],
+  },
+  {
+    label: "Platforms & AI",
+    items: ["Cloud Platforms", "AI / ML"],
+  },
 ];
-
-function StackPills() {
-  return (
-    <>
-      {STACK.map((tech) => (
-        <li
-          key={tech}
-          className="shrink-0 rounded-full border border-line bg-ink-2 px-4 py-2 font-mono text-xs text-ink-fg-muted"
-        >
-          {tech}
-        </li>
-      ))}
-    </>
-  );
-}
 
 export function Technology() {
   return (
@@ -45,20 +31,34 @@ export function Technology() {
             The stack behind the work
           </h2>
           <p className="mt-5 text-base leading-relaxed text-ink-fg-muted">
-            We choose technology based on the problem, not the trend.
+            We choose technology based on the problem, not the trend — and go
+            deep on a focused set rather than chasing every new tool.
           </p>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.08}>
-          <div
-            className="mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
-          >
-            <ul className="marquee-track flex w-max items-center gap-3">
-              <StackPills />
-              <StackPills />
-            </ul>
-          </div>
-        </ScrollReveal>
+        <dl className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-2">
+          {STACK_GROUPS.map((group, i) => (
+            <ScrollReveal key={group.label} delay={(i % 2) * 0.06}>
+              <div className="flex h-full flex-col gap-4 bg-ink p-7 lg:flex-row lg:gap-6">
+                <dt className="shrink-0 font-mono text-xs tracking-widest text-brand-300 lg:w-36 lg:pt-1.5">
+                  {group.label.toUpperCase()}
+                </dt>
+                <dd className="min-w-0">
+                  <ul className="flex flex-wrap gap-2">
+                    {group.items.map((tech) => (
+                      <li
+                        key={tech}
+                        className="rounded-full border border-line bg-ink-2 px-3.5 py-1.5 font-mono text-xs text-ink-fg-muted"
+                      >
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            </ScrollReveal>
+          ))}
+        </dl>
       </div>
     </section>
   );

@@ -10,7 +10,7 @@ export function Hero() {
       id="top"
       className="relative overflow-hidden border-b border-line"
     >
-      <div className="absolute inset-0 hex-grid hex-grid-pan opacity-60" aria-hidden />
+      <div className="absolute inset-0 hex-grid opacity-50" aria-hidden />
       <div
         className="absolute -top-40 left-1/2 -translate-x-1/2 h-[36rem] w-[36rem] rounded-full opacity-25 blur-3xl"
         style={{
@@ -44,8 +44,8 @@ export function Hero() {
               data-reveal
               className="mt-6 text-lg leading-relaxed text-ink-fg-muted max-w-xl"
             >
-              We engineer software systems, digital products, and intelligent
-              solutions that turn complex problems into technology that works.
+              We engineer custom software, digital products, and AI systems —
+              turning complex problems into technology teams can rely on.
             </p>
 
             <div data-reveal className="mt-8 flex flex-wrap items-center gap-4">
