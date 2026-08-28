@@ -20,8 +20,16 @@ const jsonLd = {
       name: SITE.name,
       url: SITE.url,
       email: SITE.email,
+      telephone: SITE.phone,
       description: SITE.description,
       logo: `${SITE.url}/brand/mark-512.png`,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: SITE.email,
+        telephone: SITE.phone,
+        availableLanguage: ["en", "ar"],
+      },
       knowsAbout: [
         "Software Engineering",
         "Web Application Development",

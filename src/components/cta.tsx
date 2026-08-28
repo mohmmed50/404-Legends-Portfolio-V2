@@ -63,12 +63,23 @@ export function CTA() {
             </Link>
           </div>
 
-          <p className="mt-6 font-mono text-sm text-ink-fg-muted">
+          <p className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-mono text-sm text-ink-fg-muted">
             <Link
               href={MAILTO}
               className="transition-colors hover:text-brand-200"
             >
               {SITE.email}
+            </Link>
+            <span className="text-line" aria-hidden>
+              /
+            </span>
+            <Link
+              href={SITE.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-brand-200"
+            >
+              WhatsApp
             </Link>
           </p>
         </ScrollReveal>
