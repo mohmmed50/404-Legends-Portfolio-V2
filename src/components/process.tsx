@@ -84,12 +84,15 @@ export function Process() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {STEPS.map((step, i) => (
               <ScrollReveal key={step.n} delay={(i % 6) * 0.05}>
-                <div className="relative pl-0">
+                <div className="relative">
                   <span className="font-mono text-sm text-brand-400">
                     {step.n}
                   </span>
-                  <div className="mt-3 h-6" />
-                  <h3 className="font-display font-semibold text-lg text-ink-fg">
+                  <span
+                    className="absolute left-0 top-[1.55rem] hidden h-2 w-2 -translate-y-1/2 rounded-full bg-brand-400 ring-4 ring-ink-2 xl:block"
+                    aria-hidden
+                  />
+                  <h3 className="mt-9 font-display font-semibold text-lg text-ink-fg">
                     {step.title}
                   </h3>
                   <p className="mt-1.5 text-sm text-ink-fg-muted">

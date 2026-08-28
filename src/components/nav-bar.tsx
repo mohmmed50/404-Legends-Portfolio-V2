@@ -4,24 +4,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { NAV_LINKS } from "@/lib/site";
 
-const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#process", label: "Process" },
-  { href: "#projects", label: "Projects" },
-  { href: "#technology", label: "Technology" },
-];
+const SECTION_IDS = NAV_LINKS.map((link) => link.href.slice(1));
 
 export function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null
+    );
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -34,8 +50,7 @@ export function NavBar() {
     >
       <nav
         aria-label="Primary"
-        className="mx-auto max-w-(--container-max) px-6 lg:px-10 h-18 flex items-center justify-between"
-        style={{ height: "4.5rem" }}
+        className="mx-auto flex h-[4.5rem] max-w-(--container-max) items-center justify-between px-6 lg:px-10"
       >
         <Link
           href="#top"
@@ -56,16 +71,24 @@ export function NavBar() {
         </Link>
 
         <ul className="hidden md:flex items-center gap-8">
-          {LINKS.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-sm text-ink-fg-muted hover:text-ink-fg transition-colors"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = active === link.href.slice(1);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`text-sm transition-colors ${
+                    isActive
+                      ? "text-ink-fg"
+                      : "text-ink-fg-muted hover:text-ink-fg"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden md:block">
@@ -79,7 +102,7 @@ export function NavBar() {
 
         <button
           type="button"
-          className="md:hidden inline-flex items-center justify-center h-10 w-10 text-ink-fg"
+          className="md:hidden inline-flex items-center justify-center h-11 w-11 -mr-2 text-ink-fg"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -91,7 +114,7 @@ export function NavBar() {
       {open && (
         <div className="md:hidden bg-ink border-t border-line">
           <ul className="px-6 py-4 flex flex-col gap-1">
-            {LINKS.map((link) => (
+            {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}

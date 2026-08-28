@@ -48,7 +48,7 @@ export function Hero() {
               solutions that turn complex problems into technology that works.
             </p>
 
-            <div data-reveal className="mt-10 flex flex-wrap items-center gap-4">
+            <div data-reveal className="mt-8 flex flex-wrap items-center gap-4">
               <MagneticButton>
                 <Link
                   href="#contact"
@@ -73,9 +73,21 @@ export function Hero() {
               </Link>
             </div>
 
-            <p data-reveal className="mt-4 text-sm text-ink-fg-muted">
-              We turn complex problems into reliable software systems.
-            </p>
+            <ul
+              data-reveal
+              className="mt-12 flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs tracking-wide text-ink-fg-muted"
+            >
+              {[
+                "Systems in production",
+                "Full-stack + AI",
+                "Architecture-first delivery",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-brand-400" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </HeroIntro>
