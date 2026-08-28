@@ -32,9 +32,11 @@ export function SectionConnector({ children }: { children: ReactNode }) {
     const dot = dotRef.current;
     if (!wrap || !content || !svg || !path || !dot) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const qaForce =
+      new URLSearchParams(window.location.search).get("motion") === "force";
+    const prefersReducedMotion =
+      !qaForce &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     // The connector line and its scroll-linked motion are a large-screen accent
     // only — it is visually hidden below lg and adds nothing on touch layouts.
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;

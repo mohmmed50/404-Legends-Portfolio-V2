@@ -20,13 +20,15 @@ export function Splash() {
     const mark = markRef.current;
     if (!root || !mark) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const qaForce =
+      new URLSearchParams(window.location.search).get("motion") === "force";
+    const prefersReducedMotion =
+      !qaForce &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let alreadySeen = false;
     try {
-      alreadySeen = sessionStorage.getItem(SESSION_KEY) === "1";
+      alreadySeen = !qaForce && sessionStorage.getItem(SESSION_KEY) === "1";
     } catch {
       alreadySeen = false;
     }
@@ -65,6 +67,11 @@ export function Splash() {
       }
     }
 
+    function finish() {
+      document.body.style.overflow = previousOverflow;
+      setVisible(false);
+    }
+
     function dismiss() {
       if (dismissedRef.current) return;
       dismissedRef.current = true;
@@ -79,11 +86,11 @@ export function Splash() {
         opacity: 0,
         duration: 0.6,
         ease: "power2.inOut",
-        onComplete: () => {
-          document.body.style.overflow = previousOverflow;
-          setVisible(false);
-        },
+        onComplete: finish,
       });
+      // Safety net: if the tab is backgrounded mid-fade, GSAP's rAF pauses and
+      // onComplete may be delayed — guarantee the overlay is gone regardless.
+      setTimeout(finish, 900);
     }
 
     dismissRef.current = dismiss;
