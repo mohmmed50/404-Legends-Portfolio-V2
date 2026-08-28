@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  ClipboardList,
-  GraduationCap,
-  HeartHandshake,
-} from "lucide-react";
+import { ArrowUpRight, ClipboardList, GraduationCap } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
-const PROJECTS = [
+type Project = {
+  name: string;
+  repo?: string;
+  href?: string;
+  image?: string;
+  icon?: typeof ClipboardList;
+};
+
+const PROJECTS: Project[] = [
   {
     name: "RSA Academy",
     repo: "RSA-Acadamy",
@@ -30,13 +33,8 @@ const PROJECTS = [
     icon: ClipboardList,
   },
   {
-    name: "Wedding Invitation II",
-    repo: "wedding-invitation2",
-    image: "/projects/wedding-invitation2.png",
-  },
-  {
-    name: "Wedding Invitation I",
-    repo: "Wedding-invitation1",
+    name: "Wedding Invitations (3 editions)",
+    href: "https://github.com/ebrahimmehasen?tab=repositories&q=wedding-invitation",
     image: "/projects/wedding-invitation1.png",
   },
   {
@@ -48,11 +46,6 @@ const PROJECTS = [
     name: "Student Registration Form",
     repo: "uni",
     icon: GraduationCap,
-  },
-  {
-    name: "Wedding Invitation III",
-    repo: "wedding-invitation3",
-    icon: HeartHandshake,
   },
 ];
 
@@ -75,9 +68,12 @@ export function OurProjects() {
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((project, i) => (
-            <ScrollReveal key={project.repo} delay={(i % 3) * 0.06}>
+            <ScrollReveal key={project.repo ?? project.href} delay={(i % 3) * 0.06}>
               <Link
-                href={`https://github.com/ebrahimmehasen/${project.repo}#readme`}
+                href={
+                  project.href ??
+                  `https://github.com/ebrahimmehasen/${project.repo}#readme`
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group block h-full overflow-hidden rounded-2xl border border-line bg-ink-2 transition-colors hover:border-brand-400/60"
